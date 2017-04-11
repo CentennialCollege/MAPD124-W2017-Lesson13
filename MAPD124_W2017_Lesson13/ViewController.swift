@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     var isGrantedPermission = false
 
@@ -46,6 +46,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UNUserNotificationCenter.current().delegate = self
 
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
         { (isGranted, error) in
@@ -54,10 +56,14 @@ class ViewController: UIViewController {
                 // display a message that lets the user know that they will not recieve notifications
             }
         }
-        
     }
 
-
+    // Delegates -------------
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
 
 }
 
