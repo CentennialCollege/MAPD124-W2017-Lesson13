@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
-    
+    var notificationNumber = 0
     var isGrantedPermission = false
 
     @IBAction func SendANotification(_ sender: UIButton) {
@@ -24,13 +24,16 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
             
             // Step 3 - create a request object (container for the notification request)
-            let request  = UNNotificationRequest(identifier: "message.new", content: content, trigger: trigger)
+            let request  = UNNotificationRequest(identifier: "message.new.\(notificationNumber)", content: content, trigger: trigger)
             
             // Step 4 - add the request to the notification center
             UNUserNotificationCenter.current().add(request) {
                 (error) in
                 if(error != nil) {
                     print("error adding notification")
+                }
+                else {
+                    self.notificationNumber += 1
                 }
             }
             
@@ -41,6 +44,13 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     @IBAction func ViewDeliveredNotifications(_ sender: UIButton) {
+        UNUserNotificationCenter.current().getDeliveredNotifications
+            { (notifications) in
+            print("\(Date()) --> \(notifications.count) delivered")
+                for notification in notifications {
+                    print("\(notification.request.identifier)  \(notification.request.content.body)")
+                }
+        }
     }
     
     
