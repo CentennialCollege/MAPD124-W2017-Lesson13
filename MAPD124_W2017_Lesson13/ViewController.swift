@@ -41,6 +41,13 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     @IBAction func ViewPendingNotifications(_ sender: UIButton) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests
+            { (requestList) in
+            print("\(Date()) --> \(requestList.count) requests pending")
+                for request in requestList {
+                    print("\(request.identifier) body: \(request.content.body)")
+                }
+        }
     }
     
     @IBAction func ViewDeliveredNotifications(_ sender: UIButton) {
