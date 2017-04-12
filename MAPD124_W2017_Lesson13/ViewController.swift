@@ -13,6 +13,25 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     var notificationNumber = 0
     var isGrantedPermission = false
 
+    
+    func addNotification(content: UNMutableNotificationContent, trigger: UNNotificationTrigger?, identifier: String) {
+        
+        // Step 3 - create a request object (container for the notification request)
+        let request  = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        // Step 4 - add the request to the notification center
+        UNUserNotificationCenter.current().add(request) {
+            (error) in
+            if(error != nil) {
+                print("error adding notification")
+            }
+            else {
+                self.notificationNumber += 1
+            }
+        }
+
+    }
+    
     @IBAction func SendANotification(_ sender: UIButton) {
         if(isGrantedPermission) {
             // Step 1 - create a content object
@@ -23,20 +42,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             // Step 2 - create a trigger object
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
             
-            // Step 3 - create a request object (container for the notification request)
-            let request  = UNNotificationRequest(identifier: "message.new.\(notificationNumber)", content: content, trigger: trigger)
-            
-            // Step 4 - add the request to the notification center
-            UNUserNotificationCenter.current().add(request) {
-                (error) in
-                if(error != nil) {
-                    print("error adding notification")
-                }
-                else {
-                    self.notificationNumber += 1
-                }
-            }
-            
+           addNotification(content: content, trigger: trigger, identifier: "message.simple.\(notificationNumber)")
         }
     }
     
@@ -56,19 +62,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             // Step 3 - Create a trigger object
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
             
-            // Step 4 - Create the request object to contain the notification
-            let request  = UNNotificationRequest(identifier: "message.new.\(notificationNumber)", content: content, trigger: trigger)
-            
-            // Step 5 - add the request to the notification center
-            UNUserNotificationCenter.current().add(request) {
-                (error) in
-                if(error != nil) {
-                    print("error adding notification")
-                }
-                else {
-                    self.notificationNumber += 1
-                }
-            }
+            addNotification(content: content, trigger: trigger, identifier: "message.schedule.\(notificationNumber)")
         }
     }
     
