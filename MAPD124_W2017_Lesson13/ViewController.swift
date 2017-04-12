@@ -40,6 +40,39 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         }
     }
     
+    
+    @IBAction func ScheduleANotification(_ sender: UIButton) {
+        if(isGrantedPermission) {
+            // Step 1 - Create a content object
+            let content = UNMutableNotificationContent()
+            content.title = "A Scheduled Notification"
+            content.body = "Some Scheduled Content goes here...!"
+            
+            // Step 2 - setup your calendar / date object
+            let units:Set<Calendar.Component> = [.minute, .hour, .second]
+            var date = Calendar.current.dateComponents(units, from: Date())
+            date.second = date.second! + 10
+            
+            // Step 3 - Create a trigger object
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+            
+            // Step 4 - Create the request object to contain the notification
+            let request  = UNNotificationRequest(identifier: "message.new.\(notificationNumber)", content: content, trigger: trigger)
+            
+            // Step 5 - add the request to the notification center
+            UNUserNotificationCenter.current().add(request) {
+                (error) in
+                if(error != nil) {
+                    print("error adding notification")
+                }
+                else {
+                    self.notificationNumber += 1
+                }
+            }
+        }
+    }
+    
+    
     @IBAction func ViewPendingNotifications(_ sender: UIButton) {
         UNUserNotificationCenter.current().getPendingNotificationRequests
             { (requestList) in

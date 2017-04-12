@@ -26,21 +26,29 @@
                                 <rect key="frame" x="26" y="60" width="323" height="567"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Notifier!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mA-9H-kgD">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="142"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="113.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDd-5c-r6n">
-                                        <rect key="frame" x="0.0" y="142" width="323" height="141.5"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="323" height="113.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <state key="normal" title="Send A Notification"/>
                                         <connections>
                                             <action selector="SendANotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KNU-Rv-iWS"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqa-Bk-SSz">
+                                        <rect key="frame" x="0.0" y="227" width="323" height="113"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <state key="normal" title="Schedule A Notification"/>
+                                        <connections>
+                                            <action selector="ScheduleANotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XyO-tc-kxG"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsa-fk-sgl">
-                                        <rect key="frame" x="0.0" y="283.5" width="323" height="142"/>
+                                        <rect key="frame" x="0.0" y="340" width="323" height="113.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <state key="normal" title="View Pending Notifications"/>
                                         <connections>
@@ -48,7 +56,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Le-bN-zSO">
-                                        <rect key="frame" x="0.0" y="425.5" width="323" height="141.5"/>
+                                        <rect key="frame" x="0.0" y="453.5" width="323" height="113.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <state key="normal" title="View Delivered Notifications"/>
                                         <connections>
